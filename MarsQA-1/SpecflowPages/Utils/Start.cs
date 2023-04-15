@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading;
 using TechTalk.SpecFlow;
 using static MarsQA_1.Helpers.CommonMethods;
+using MarsQA_1.SpecflowPages.Pages;
 
 namespace MarsQA_1.Utils
 {
@@ -15,33 +16,62 @@ namespace MarsQA_1.Utils
     public class Start : Driver
     {
 
-        [BeforeScenario]
+        [BeforeScenario("mytag")]
         public void Setup()
         {
             //launch the browser
             Initialize();
-            ExcelLibHelper.PopulateInCollection(@"MarsQA-1\SpecflowTests\Data\Mars.xlsx", "Credentials");
+            //ExcelLibHelper.PopulateInCollection(@"MarsQA-1\SpecflowTests\Data\Mars.xlsx", "Credentials");
             //call the SignIn class
             SignIn.SigninStep();
+
+            
         }
 
-        [AfterScenario]
+        [AfterScenario("mytag")]
         public void TearDown()
         {
 
             // Screenshot
-            string img = SaveScreenShotClass.SaveScreenshot(Driver.driver, "Report");
-           test.Log(LogStatus.Info, "Snapshot below: " + test.AddScreenCapture(img));
+            //string img = SaveScreenShotClass.SaveScreenshot(Driver.driver, "Report");
+            //test.Log(LogStatus.Info, "Snapshot below: " + test.AddScreenCapture(img));
             //Close the browser
-            Close();
+            //Close();
              
             // end test. (Reports)
-            CommonMethods.Extent.EndTest(test);
+            //CommonMethods.Extent.EndTest(test);
             
             // calling Flush writes everything to the log file (Reports)
-            CommonMethods.Extent.Flush();
+            //CommonMethods.Extent.Flush();
            
 
+        }
+
+        [BeforeScenario("tag1")]
+        public void openCertificationsTab()
+        {
+            Profile profile = new Profile();
+            profile.goToCertificationsTab(driver);
+
+            profile.addCertification(driver);
+        }
+
+
+        [AfterScenario("tag1")]
+        public void updateCertification()
+        {
+            Profile profile = new Profile();
+            
+            profile.updateCertification(driver);
+        }
+
+
+        [BeforeScenario("tag4")]
+        public void deleteCertification()
+        {
+            Profile profile = new Profile();
+
+            profile.deleteCertification(driver);
         }
     }
 }

@@ -16,7 +16,7 @@ namespace MarsQA_1.Utils
     public class Start : Driver
     {
 
-        [BeforeScenario("mytag")]
+        [BeforeScenario]
         public void Setup()
         {
             //launch the browser
@@ -28,7 +28,7 @@ namespace MarsQA_1.Utils
             
         }
 
-        [AfterScenario("mytag")]
+        [AfterScenario]
         public void TearDown()
         {
 
@@ -36,7 +36,7 @@ namespace MarsQA_1.Utils
             //string img = SaveScreenShotClass.SaveScreenshot(Driver.driver, "Report");
             //test.Log(LogStatus.Info, "Snapshot below: " + test.AddScreenCapture(img));
             //Close the browser
-            //Close();
+            Close();
              
             // end test. (Reports)
             //CommonMethods.Extent.EndTest(test);
@@ -47,31 +47,31 @@ namespace MarsQA_1.Utils
 
         }
 
-        [BeforeScenario("tag1")]
+        /*[BeforeScenario("tag1")]
         public void openCertificationsTab()
         {
             Profile profile = new Profile();
             profile.goToCertificationsTab(driver);
 
             profile.addCertification(driver);
-        }
+        }*/
 
 
-        [AfterScenario("tag1")]
+        /*[AfterScenario("tag1")]
         public void updateCertification()
         {
             Profile profile = new Profile();
             
             profile.updateCertification(driver);
-        }
+        }*/
 
 
-        [BeforeScenario("tag4")]
+        /*[BeforeScenario("tag4")]
         public void deleteCertification()
         {
             Profile profile = new Profile();
 
             profile.deleteCertification(driver);
-        }
+        }*/
     }
 }

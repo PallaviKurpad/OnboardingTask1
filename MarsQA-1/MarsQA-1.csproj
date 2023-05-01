@@ -504,9 +504,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="Feature\ProfileDetailsFeature\Certifications.feature" />
-    <None Include="Feature\ProfileDetailsFeature\Education.feature" />
-    <None Include="Feature\ProfileDetailsFeature\Skills.feature" />
-    <None Include="Feature\ProfileDetailsFeature\Languages.feature" />
     <None Include="Feature\Login.feature" />
     <None Include="libmongocrypt.dylib" />
     <None Include="libmongocrypt.so" />

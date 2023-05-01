@@ -1,111 +1,103 @@
+using MarsQA_1.Helpers;
 using System;
 using TechTalk.SpecFlow;
+using MarsQA_1.SpecflowPages.Pages;
+using NUnit.Framework;
+using OpenQA.Selenium;
+using System.Threading;
 
 namespace MarsQA_1
 {
     [Binding]
-    public class CertificationsStepDefinitions
+    public class CertificationsStepDefinitions : Driver
     {
-        [Given(@"I am under the tab Certifications")]
-        public void GivenIAmUnderTheTabCertifications()
+        Profile profile = new Profile();
+
+        [When(@"I go to the tab Certifications")]
+        public void WhenIGoToTheTabCertifications()
         {
-            //throw new PendingStepException();
+            profile.goToCertificationsTab(driver);
         }
 
-        [When(@"I click on Add New button")]
-        public void WhenIClickOnAddNewButton()
+
+        [When(@"I add a new Certification record")]
+        public void WhenIAddANewCertificationRecord()
         {
-            //throw new PendingStepException();
+            profile.addCertification(driver);
         }
 
-        [When(@"I enter SSDD in the Certificate text field")]
-        public void WhenIEnterSSDDInTheCertificateTextField()
+
+        [Then(@"The record should be created successfully")]
+        public void ThenTheRecordShouldBeCreatedSuccessfully()
         {
-            //throw new PendingStepException();
+            Thread.Sleep(2000);
+
+            IWebElement newCertification = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[5]/div[1]/div[2]/div/table/tbody[last()]/tr/td[1]"));
+
+            if (newCertification.Text == "SSDD")
+            {
+                Assert.Pass("Certification record created successfully.");
+            }
+            else
+            {
+                Assert.Fail("Certification record not created");
+            }
         }
 
-        [When(@"I enter Wert in the Certified From text field")]
-        public void WhenIEnterWertInTheCertifiedFromTextField()
+
+        [When(@"I update '([^']*)' on an existing Certifications record")]
+        public void WhenIUpdateAnExistingCertificationsRecord(string certifiedFrom)
         {
-            //throw new PendingStepException();
+            profile.updateCertification(driver, certifiedFrom);
         }
 
-        [When(@"I select (.*) in the Year select field")]
-        public void WhenISelectInTheYearSelectField(int p0)
+
+        [Then(@"The record should have the updated '([^']*)'")]
+        public void ThenTheRecordShouldHaveTheUpdated(string certifiedFrom)
         {
-            //throw new PendingStepException();
+            Thread.Sleep(3000);
+
+            IWebElement newCertifiedFrom = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[5]/div[1]/div[2]/div/table/tbody[last()]/tr/td[2]"));
+
+            if (newCertifiedFrom.Text == certifiedFrom)
+            {
+                try
+                {
+                    Assert.Pass("Certification record updated successfully.");
+                }
+                catch (SuccessException e)
+                {
+                    return;
+                }
+            }
+            else
+            {
+                Assert.Fail("Certification record not updated");
+            }
         }
 
-        [When(@"I click on Add button")]
-        public void WhenIClickOnAddButton()
+
+        [When(@"I delete an existing Certification record")]
+        public void WhenIDeleteAnExistingCertificationRecord()
         {
-            //throw new PendingStepException();
+            profile.deleteCertification(driver);
         }
 
-        [Then(@"the record should be displayed under the Certifications tab")]
-        public void ThenTheRecordShouldBeDisplayedUnderTheCertificationsTab()
-        {
-            //throw new PendingStepException();
-        }
 
-        [Then(@"A popup with message ""([^""]*)"" should appear at the top right corner of the page")]
-        public void ThenAPopupWithMessageShouldAppearAtTheTopRightCornerOfThePage(string p0)
+        [Then(@"The record should be deleted successfully")]
+        public void ThenTheRecordShouldBeDeletedSuccessfully()
         {
-            //throw new PendingStepException();
-        }
+            Thread.Sleep(2000);
+            IWebElement certification = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[5]/div[1]/div[2]/div/table/tbody[last()]/tr/td[1]"));
 
-        [Given(@"I see the record with SSDD as Certificate displayed")]
-        public void GivenISeeTheRecordWithSSDDAsCertificateDisplayed()
-        {
-            //throw new PendingStepException();
-        }
-
-        [When(@"I click on the Pencil icon for that record")]
-        public void WhenIClickOnThePencilIconForThatRecord()
-        {
-            //throw new PendingStepException();
-        }
-
-        [Then(@"All fields for that record should become editable")]
-        public void ThenAllFieldsForThatRecordShouldBecomeEditable()
-        {
-            //throw new PendingStepException();
-        }
-
-        [Given(@"I see the record with SSDD as Certificate in editable mode")]
-        public void GivenISeeTheRecordWithSSDDAsCertificateInEditableMode()
-        {
-            //throw new PendingStepException();
-        }
-
-        [When(@"I change Wert to Wertu in Certified From field")]
-        public void WhenIChangeWertToWertuInCertifiedFromField()
-        {
-            //throw new PendingStepException();
-        }
-
-        [When(@"I click on Update button")]
-        public void WhenIClickOnUpdateButton()
-        {
-            //throw new PendingStepException();
-        }
-
-        [Then(@"The same record should be updated with new values")]
-        public void ThenTheSameRecordShouldBeUpdatedWithNewValues()
-        {
-            //throw new PendingStepException();
-        }
-
-        [When(@"I click on x icon for that record")]
-        public void WhenIClickOnXIconForThatRecord()
-        {
-            //throw new PendingStepException();
-        }
-
-        [Then(@"The record should disappear")]
-        public void ThenTheRecordShouldDisappear()
-        {
-            //throw new PendingStepException();
+            if (certification.Text == "SSDD")
+            {
+                Assert.Fail("Certification record not deleted successfully");
+            }
+            else
+            {
+                Assert.Pass("Certification record not deleted successfully");
+            }
         }
     }
 }

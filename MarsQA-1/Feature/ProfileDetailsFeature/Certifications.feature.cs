@@ -35,7 +35,8 @@ namespace MarsQA_1.Feature.ProfileDetailsFeature
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Feature/ProfileDetailsFeature", "Certifications", "A short summary of the feature", ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Feature/ProfileDetailsFeature", "Certifications", "As a Seller\r\nI want to create and update Certifications on my Profile page\r\nSo th" +
+                    "at the people seeking for some skills can look into my certification details", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -73,28 +74,14 @@ namespace MarsQA_1.Feature.ProfileDetailsFeature
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void FeatureBackground()
-        {
-#line 5
-#line hidden
-#line 6
- testRunner.Given("I am on the Profile page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 7
- testRunner.And("I am under the tab Certifications", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-        }
-        
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Add Certification")]
-        [NUnit.Framework.CategoryAttribute("tag1")]
         public void AddCertification()
         {
-            string[] tagsOfScenario = new string[] {
-                    "tag1"};
+            string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add Certification", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 10
+#line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -104,107 +91,53 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 5
-this.FeatureBackground();
+#line 9
+ testRunner.Given("I am on the Profile page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 10
+ testRunner.When("I go to the tab Certifications", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 11
+ testRunner.And("I add a new Certification record", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 12
- testRunner.When("I click on Add New button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Then("The record should be created successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 13
- testRunner.And("I enter SSDD in the Certificate text field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 14
- testRunner.And("I enter Wert in the Certified From text field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Edit existing Certification record")]
+        [NUnit.Framework.TestCaseAttribute("Wertu", null)]
+        [NUnit.Framework.TestCaseAttribute("Nebula", null)]
+        public void EditExistingCertificationRecord(string certifiedFrom, string[] exampleTags)
+        {
+            string[] tagsOfScenario = exampleTags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("Certified From", certifiedFrom);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Edit existing Certification record", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 15
- testRunner.And("I select 2020 in the Year select field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+this.ScenarioInitialize(scenarioInfo);
 #line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
 #line 16
- testRunner.And("I click on Add button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given("I am on the Profile page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 17
- testRunner.Then("the record should be displayed under the Certifications tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("I go to the tab Certifications", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 18
- testRunner.And("A popup with message \"SSDD has been added to your Certification\" should appear at" +
-                        " the top right corner of the page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("I update \'{0}\' on an existing Certifications record", certifiedFrom), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-            }
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Make Certification editable")]
-        [NUnit.Framework.CategoryAttribute("tag2")]
-        public void MakeCertificationEditable()
-        {
-            string[] tagsOfScenario = new string[] {
-                    "tag2"};
-            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Make Certification editable", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 21
-this.ScenarioInitialize(scenarioInfo);
-#line hidden
-            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
-            {
-                testRunner.SkipScenario();
-            }
-            else
-            {
-                this.ScenarioStart();
-#line 5
-this.FeatureBackground();
-#line hidden
-#line 22
- testRunner.Given("I see the record with SSDD as Certificate displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 23
- testRunner.When("I click on the Pencil icon for that record", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 24
- testRunner.Then("All fields for that record should become editable", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-            }
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Save updated Certification")]
-        [NUnit.Framework.CategoryAttribute("tag3")]
-        public void SaveUpdatedCertification()
-        {
-            string[] tagsOfScenario = new string[] {
-                    "tag3"};
-            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Save updated Certification", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 27
-this.ScenarioInitialize(scenarioInfo);
-#line hidden
-            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
-            {
-                testRunner.SkipScenario();
-            }
-            else
-            {
-                this.ScenarioStart();
-#line 5
-this.FeatureBackground();
-#line hidden
-#line 28
- testRunner.Given("I see the record with SSDD as Certificate in editable mode", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 29
- testRunner.When("I change Wert to Wertu in Certified From field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 30
- testRunner.And("I click on Update button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 31
- testRunner.Then("The same record should be updated with new values", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 32
- testRunner.And("A popup with message \"SSDD has been updated to your Certification\" should appear " +
-                        "at the top right corner of the page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 19
+ testRunner.Then(string.Format("The record should have the updated \'{0}\'", certifiedFrom), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -219,7 +152,7 @@ this.FeatureBackground();
                     "tag4"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Delete Certification", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 35
+#line 28
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -229,21 +162,17 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 5
-this.FeatureBackground();
+#line 29
+ testRunner.Given("I am on the Profile page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 36
- testRunner.Given("I see the record with SSDD as Certificate displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 30
+ testRunner.When("I go to the tab Certifications", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 37
- testRunner.When("I click on x icon for that record", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 31
+ testRunner.And("I delete an existing Certification record", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 38
- testRunner.Then("The record should disappear", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 39
- testRunner.And("A popup with message \"SSDD has been deleted from your Certification\" should appea" +
-                        "r at the top right corner of the page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 32
+ testRunner.Then("The record should be deleted successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

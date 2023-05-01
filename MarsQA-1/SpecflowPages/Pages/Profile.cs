@@ -34,23 +34,10 @@ namespace MarsQA_1.SpecflowPages.Pages
             IWebElement addButton = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[5]/div[1]/div[2]/div/div/div[3]/input[1]"));
             addButton.Click();
 
-            Thread.Sleep(2000);
-
-            IWebElement newCertification = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[5]/div[1]/div[2]/div/table/tbody[last()]/tr/td[1]"));
-
-            if (newCertification.Text == "SSDD")
-            {
-                Assert.Pass("Certification record created successfully.");
-            }
-            else
-            {
-                Assert.Fail("Certification record not created");
-            }
-
         }
 
 
-        public void updateCertification(IWebDriver driver)
+        public void updateCertification(IWebDriver driver, string certifiedFrom)
         {
             Thread.Sleep(2000);
             IWebElement editButton = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[5]/div[1]/div[2]/div/table/tbody[last()]/tr/td[4]/span[1]/i"));
@@ -58,29 +45,11 @@ namespace MarsQA_1.SpecflowPages.Pages
 
             IWebElement certificateTextBox = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[5]/div[1]/div[2]/div/table/tbody[last()]/tr/td/div/div/div[2]/input"));
             certificateTextBox.Clear();
-            certificateTextBox.SendKeys("Wertu");
+            certificateTextBox.SendKeys(certifiedFrom);
 
             IWebElement updateButton = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[5]/div[1]/div[2]/div/table/tbody[last()]/tr/td/div/span/input[1]"));
             updateButton.Click();
-            Thread.Sleep(3000);
-
-            IWebElement newCertifiedFrom = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[5]/div[1]/div[2]/div/table/tbody[last()]/tr/td[2]"));
-
-            if (newCertifiedFrom.Text == "Wertu")
-            {
-                try
-                {
-                    Assert.Pass("Certification record updated successfully.");
-                }
-                catch(SuccessException e)
-                {
-                    return;
-                }
-            }
-            else
-            {
-                Assert.Fail("Certification record not updated");
-            }
+            
         }
 
 
@@ -88,18 +57,6 @@ namespace MarsQA_1.SpecflowPages.Pages
         {           
             IWebElement deleteButton = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[5]/div[1]/div[2]/div/table/tbody[last()]/tr/td[4]/span[2]/i"));
             deleteButton.Click();
-
-            Thread.Sleep(2000);
-            IWebElement certification = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[5]/div[1]/div[2]/div/table/tbody[last()]/tr/td[1]"));
-
-            if (certification.Text == "SSDD")
-            {
-                Assert.Fail("Certification record not deleted successfully");
-            }
-            else
-            {
-                Assert.Pass("Certification record not deleted successfully");
-            }
         }
     }
 }
